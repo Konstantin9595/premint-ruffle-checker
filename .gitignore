@@ -24,9 +24,11 @@ yarn-error.log*
 
 
 # server
-./src/server/PremintClient.js
-./src/server/server.js
-./src/server/types.js
+/src/server/PremintClient.js
+/src/server/server.js
+/src/server/types.js
 
 # vsCode
 .history
+
+tasks.txt

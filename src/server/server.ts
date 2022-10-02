@@ -1,6 +1,20 @@
 import PremintClient from "./PremintClient"
+import restana from 'restana'
+import bodyParser from 'body-parser'
 
 (async() => {
+    
+    const service = restana()
+    service.use(bodyParser.json())
+
+    service.post('/check', (req, res) => {
+        const body = req.body
+        const headers = req.headers
+        
+        res.send('ok')
+    })
+    
+    service.start(80)
 
     // const client = new PremintClient()
     // const ruffleUrl = 'https://www.premint.xyz/piratesnft/'
@@ -20,3 +34,4 @@ import PremintClient from "./PremintClient"
     // await (await client.tlsInstance).exit()
     
 })()
+
