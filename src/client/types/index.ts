@@ -14,7 +14,7 @@ export enum Mode {
 export interface SwitchModeProps {
     walletAddresses: string[]
     mode: Mode
-    isValid: boolean
+    isValidInput: boolean
     save: Function
     edit: Function
     premintCheck: Function
@@ -23,4 +23,17 @@ export interface SwitchModeProps {
 export interface EditModeComponentProps {
     walletAddresses: string[]
     textTypingHandle: Function
+}
+
+export interface RuffleStatusByAddressProps {
+    ruffleStatus: RuffleStatuses,
+    message: string
+}
+
+export enum RuffleStatuses {
+    ALLOWLIST_MINT = 'ALLOWLIST_MINT',
+    PUBLIC_MINT = 'PUBLIC_MINT',
+    UNREGISTRED = "UNREGISTRED",
+    PENDING = 'PENDING',
+    UNSELECTED = 'UNSELECTED',
 }

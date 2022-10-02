@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useForm } from "react-hook-form"
-import WalletList from './components/WalletList'
+import AddressList from './components/AddressList'
 
 const AppContainer = styled.div`
   max-width: 960px;
@@ -19,6 +19,9 @@ const Title = styled.h1`
 const AppContent = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
 `
 
 // const store = {
@@ -59,7 +62,7 @@ function App() {
         </Title>
       </Header>
       <AppContent className='app-content'>
-        <WalletList />
+        <AddressList />
       </AppContent>
     </AppContainer>
   );

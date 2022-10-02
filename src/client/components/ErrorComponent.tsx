@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import {Error}  from '../types'
 
 const ErrorsBlock = styled.div`
-color: red;
-width: 400px;
-margin: 0 auto;
+    color: red;
+    width: 400px;
+    margin: 5px auto;
 `
 
-const ErrorItem = styled.div``
-
+const ErrorItem = styled.div`
+`
 
 const ErrorComponent = ({errors}: Error) => {
     return (
