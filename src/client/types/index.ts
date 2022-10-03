@@ -1,3 +1,6 @@
+
+import {RuffleStatuses} from '../../server/types'
+
 export interface WalletProps {
     walletAddresses: string[]
 }
@@ -28,12 +31,4 @@ export interface EditModeComponentProps {
 export interface RuffleStatusByAddressProps {
     ruffleStatus: RuffleStatuses,
     message: string
-}
-
-export enum RuffleStatuses {
-    ALLOWLIST_MINT = 'ALLOWLIST_MINT',
-    PUBLIC_MINT = 'PUBLIC_MINT',
-    UNREGISTRED = "UNREGISTRED",
-    PENDING = 'PENDING',
-    UNSELECTED = 'UNSELECTED',
 }
