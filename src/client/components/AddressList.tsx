@@ -2,6 +2,7 @@ import React, { useState, useEffect, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import ErrorComponent from './ErrorComponent'
 import SwitchModeComponent from './SwitchModeComponent'
+import PremintUrlForm from './PremintUrlForm'
 import { Mode } from '../types'
 import EditIcon from '@mui/icons-material/Edit'
 import SaveIcon from '@mui/icons-material/Save'
@@ -96,6 +97,7 @@ const AddressList = () => {
     return (
         <>
             <ContentTopWrapper>
+                <PremintUrlForm />
                 <SwitchModeComponent walletAddresses={walletAddresses} mode={mode} isValidInput={isValidInput} save={save} edit={edit} premintCheck={premintCheck} textTypingHandle={textTypingHandle}  />
             </ContentTopWrapper>
             <ContentBottomWrapper>
