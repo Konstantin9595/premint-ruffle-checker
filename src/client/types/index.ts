@@ -17,18 +17,22 @@ export enum Mode {
 export interface SwitchModeProps {
     walletAddresses: string[]
     mode: Mode
-    isValidInput: boolean
-    save: Function
-    edit: Function
-    premintCheck: Function
-    textTypingHandle: Function
+    // save: Function
+    // edit: Function
+    // premintCheck: Function
+    textareaTypingHandle: Function
 }
 export interface EditModeComponentProps {
     walletAddresses: string[]
-    textTypingHandle: Function
+    textareaTypingHandle: Function
 }
 
 export interface RuffleStatusByAddressProps {
     ruffleStatus: RuffleStatuses,
     message: string
+}
+
+
+export interface PremintUrlFormProps {
+    checkValidUrlForm: Function
 }

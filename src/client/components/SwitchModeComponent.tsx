@@ -8,11 +8,11 @@ const ViewModeList = styled.ul`
     border: 1px solid rgba(183, 183, 183, 1);
     padding: 10px;
     text-align: center;
-    height: 500px;
+    height: 350px;
     overflow: auto;
     display: flex;
     flex-direction: column;
-    flex-basis: 40%;
+    flex-basis: 40%;x
 `
 const ViewModeListItem = styled.li`
     list-style: none;
@@ -44,7 +44,7 @@ const StatusList = styled.ul`
     border: 1px solid rgba(183, 183, 183, 1);
     padding: 10px;
     text-align: center;
-    height: 500px;
+    height: 350px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -75,21 +75,21 @@ const ViewModeComponent = ({walletAddresses}: {walletAddresses: string[]}) => {
     )
 }
 
-const EditModeComponent = ({walletAddresses, textTypingHandle}: EditModeComponentProps) => {
+const EditModeComponent = ({walletAddresses, textareaTypingHandle}: EditModeComponentProps) => {
     const addressString = walletAddresses.join('\n')
 
     return (
         <>
-            <Textarea onChange={(e) => textTypingHandle(e)} defaultValue={addressString}/>
+            <Textarea onChange={(e) => textareaTypingHandle(e)} defaultValue={addressString}/>
         </>
     )
 }
 
-const SwitchModeComponent = ({walletAddresses, mode, isValidInput, save, edit, premintCheck, textTypingHandle}: SwitchModeProps) => {
+const SwitchModeComponent = ({walletAddresses, mode, textareaTypingHandle}: SwitchModeProps) => {
 
     return (
         <>
-            {mode === Mode.VIEW ? <>{<ViewModeComponent walletAddresses={walletAddresses}/>}</> : <>{<EditModeComponent walletAddresses={walletAddresses} textTypingHandle={textTypingHandle} />}</>}
+            {mode === Mode.VIEW ? <>{<ViewModeComponent walletAddresses={walletAddresses}/>}</> : <>{<EditModeComponent walletAddresses={walletAddresses} textareaTypingHandle={textareaTypingHandle} />}</>}
         </>
     )
 }

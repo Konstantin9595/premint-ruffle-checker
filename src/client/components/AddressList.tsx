@@ -42,11 +42,12 @@ const ContentBottomWrapper = styled.div`
 
 
 const AddressList = () => {
-    const [isValidInput, setValidInput] = useState<boolean>(true)
+    const [isValidAddressList, setAddressList] = useState<boolean>(true)
     const [errors, setError] = useState<string[]>([])
     const [textareaValues, setTextareaValue] = useState<string[]>([])
     const [walletAddresses, setWallets] = useState(() => getStorage())
     const [mode, setMode] = useState<Mode>(Mode.VIEW)
+    const [isValidUrlForm, setValidUrlForm] = useState<boolean>(false)
 
     function getStorage () {
         const walletAddresses = localStorage.getItem('walletAddresses')
@@ -66,7 +67,7 @@ const AddressList = () => {
     }
 
 
-    const textTypingHandle = (e: SyntheticEvent) => {
+    const textareaTypingHandle = (e: SyntheticEvent) => {
         const values = (e.target as HTMLFormElement).value
         const splitedValues = values.split('\n').filter((el: string) => el !== '')
         setTextareaValue(splitedValues)
@@ -75,12 +76,12 @@ const AddressList = () => {
     const save = () => {
 
         if(!isValidTextareaField(textareaValues)) {
-            setValidInput(false)
+            setAddressList(false)
             setError(['Each address must be on a new line and have 42 characters length.'])
             return
         }
 
-        setValidInput(true)
+        setAddressList(true)
         setError([])
         setWallets(textareaValues)
         setMode(Mode.VIEW)
@@ -94,11 +95,15 @@ const AddressList = () => {
         console.log('Premint check')
     }
 
+    const checkValidUrlForm = (status: boolean): void => {
+        status ? setValidUrlForm(true) : setValidUrlForm(false)
+    }
+
     return (
         <>
             <ContentTopWrapper>
-                <PremintUrlForm />
-                <SwitchModeComponent walletAddresses={walletAddresses} mode={mode} isValidInput={isValidInput} save={save} edit={edit} premintCheck={premintCheck} textTypingHandle={textTypingHandle}  />
+                <PremintUrlForm checkValidUrlForm={checkValidUrlForm}/>
+                <SwitchModeComponent walletAddresses={walletAddresses} mode={mode} textareaTypingHandle={textareaTypingHandle}  />
             </ContentTopWrapper>
             <ContentBottomWrapper>
                 <SwitchModeButtons>
@@ -111,7 +116,7 @@ const AddressList = () => {
                             <StyledEditIcon /> Edit
                         </SwitchModeButton>
                         <SwitchModeButton 
-                        disabled={mode === Mode.VIEW && isValidInput && walletAddresses.length ? false : true } 
+                        disabled={mode === Mode.VIEW && isValidAddressList && walletAddresses.length ? false : true } 
                         onClick={() => premintCheck()}
                         >
                             <StyledCheckIcon /> Premint Check

@@ -1,5 +1,7 @@
 import React from 'react'
-import { RuffleStatusByAddressProps, RuffleStatuses} from '../types'
+import { RuffleStatusByAddressProps, } from '../types'
+//import { RuffleStatuses} from '../../server/types'
+
 import styled from 'styled-components'
 
 const AllowList = styled.div`
