@@ -92,18 +92,16 @@ const PremintCheckerContainer = () => {
     }, [formInputUrl, mode])
 
     function getStorage () {
-        const walletAddresses = localStorage.getItem('walletAddresses') ?? []
+        const walletAddresses = JSON.parse(localStorage.getItem('walletAddresses') as string) ?? []
         const isWallets = walletAddresses ? true : false
 
         if(!isWallets) {
             setTextareaError(['Add premint url and list of addresses for check'])
         }
 
-        const jsonData = JSON.parse(walletAddresses as string)
+        setTextareaValue(walletAddresses)
 
-        setTextareaValue(jsonData)
-
-        return jsonData
+        return walletAddresses
     }
 
     const isValidTextareaField = (addresses: string[]): boolean => {
