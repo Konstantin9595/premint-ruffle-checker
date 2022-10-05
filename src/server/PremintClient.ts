@@ -53,7 +53,7 @@ export default class PremintClient implements PremintInterface {
     private async checkRegister(url: string, requestData: RequestData): Promise<RuffleResultResponse> {
         const { wallet, proxy } = requestData
 
-        const {status, body} = await (await this.tlsInstance).get(`${url}verify/?wallet=${wallet}`, {
+        const {status, body} = await (await this.tlsInstance).get(`${url}/verify/?wallet=${wallet}`, {
             ja3: '771,4865-4867-4866-49195-49199-52393-52392-49196-49200-49162-49161-49171-49172-51-57-47-53-10,0-23-65281-10-11-35-16-5-51-43-13-45-28-21,29-23-24-25-256-257,0',
             userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0',
             headers: {
@@ -86,7 +86,13 @@ export default class PremintClient implements PremintInterface {
         const dom = parse(body)
         const headingList = dom.querySelectorAll("section .card-body .heading")
         const headingLength = headingList.length
-        const heading = headingList[headingLength - 1].innerText
+        let heading = null
+        try {
+            heading = headingList[headingLength - 1].innerText
+        } catch {
+            heading = ''
+        }
+        
         const registerStatusData =  this.extractStatusFromBody(heading)
         return { responseStatus: status, isRegister: registerStatusData.isRegister, message: registerStatusData.message, url, proxy, registerWallet: requestData.wallet }
         
@@ -94,7 +100,7 @@ export default class PremintClient implements PremintInterface {
 
     private extractStatusFromBody(message?: string): never | { message: string, isRegister: boolean, ruffleStatus: RuffleStatuses} {
         if(!message) {
-            throw new Error('Empty string passed')
+            return { message: "Is not a valid ETH address", isRegister: true, ruffleStatus: RuffleStatuses.UNREGISTRED }
         }
 
         const msg = message.toLowerCase()

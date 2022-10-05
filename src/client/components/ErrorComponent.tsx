@@ -1,4 +1,3 @@
-import React, { useState, useEffect, SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import {Error}  from '../types'
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, SyntheticEvent, useRef } from 'react'
+import { FC } from 'react'
 import styled from 'styled-components'
 
-import { SwitchModeProps, WalletProps, Mode, EditModeComponentProps } from '../types'
+import { SwitchModeProps, Mode, EditModeProps, ViewModeProps } from '../types'
 
 const ViewModeList = styled.ul`
     box-shadow: 1px 1px 5px 4px rgb(183 183 183 / 50%);
@@ -51,6 +51,13 @@ const StatusList = styled.ul`
     flex-basis: 20%;
     margin-left: 15px;
 `
+const StatusItem = styled.li`
+    color: #ccc;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+`
 const ViewModeContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -58,9 +65,11 @@ const ViewModeContainer = styled.div`
     margin: 0 auto;
     justify-content: center;
 `
+const indextoNum = (ndx: number): string => {
+    return `${++ndx}.`
+}
 
-
-const ViewModeComponent = ({walletAddresses}: {walletAddresses: string[]}) => {
+const ViewMode: FC<ViewModeProps> = ({walletAddresses, statusListResults}) => {
     return (
         <ViewModeContainer>
             <ViewModeList>
@@ -70,12 +79,17 @@ const ViewModeComponent = ({walletAddresses}: {walletAddresses: string[]}) => {
                     )
                 }) : <EmptyListItem key={1}>Press the edit button and paste a list of metamask addresses (Each address on a new line)</EmptyListItem>}
             </ViewModeList>
-            <StatusList/>
+            <StatusList>
+                {statusListResults.map((message, ndx) => (
+                <StatusItem key={ ndx }>
+                    {indextoNum(ndx)} {message}
+                </StatusItem>))}
+            </StatusList>
         </ViewModeContainer>
     )
 }
 
-const EditModeComponent = ({walletAddresses, textareaTypingHandle}: EditModeComponentProps) => {
+const EditMode: FC<EditModeProps> = ({walletAddresses, textareaTypingHandle}) => {
     const addressString = walletAddresses.join('\n')
 
     return (
@@ -85,13 +99,13 @@ const EditModeComponent = ({walletAddresses, textareaTypingHandle}: EditModeComp
     )
 }
 
-const SwitchModeComponent = ({walletAddresses, mode, textareaTypingHandle}: SwitchModeProps) => {
+const SwitchMode = ({statusListResults, walletAddresses, mode, textareaTypingHandle}: SwitchModeProps) => {
 
     return (
         <>
-            {mode === Mode.VIEW ? <>{<ViewModeComponent walletAddresses={walletAddresses}/>}</> : <>{<EditModeComponent walletAddresses={walletAddresses} textareaTypingHandle={textareaTypingHandle} />}</>}
+            {mode === Mode.VIEW ? <>{<ViewMode statusListResults={statusListResults} walletAddresses={walletAddresses}/>}</> : <>{<EditMode walletAddresses={walletAddresses} textareaTypingHandle={textareaTypingHandle} />}</>}
         </>
     )
 }
 
-export default SwitchModeComponent
+export default SwitchMode

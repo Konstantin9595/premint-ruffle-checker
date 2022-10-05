@@ -77,6 +77,9 @@ service.post('/check-result', (req: any, res: any) => {
             'content-type': 'application/json',
         })
     })
+    .finally(() => {
+        client.tlsInstance.then((tls: any) => tls.exit().then(() => console.log('tls process closed.')))
+    })
 
     // client.tlsInstance
     // .then((resp: any) => resp.exit())

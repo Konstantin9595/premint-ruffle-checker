@@ -15,6 +15,7 @@ export enum Mode {
 }
 
 export interface SwitchModeProps {
+    statusListResults: string[]
     walletAddresses: string[]
     mode: Mode
     // save: Function
@@ -22,7 +23,13 @@ export interface SwitchModeProps {
     // premintCheck: Function
     textareaTypingHandle: Function
 }
-export interface EditModeComponentProps {
+
+export interface ViewModeProps {
+    statusListResults: string[]
+    walletAddresses: string[]
+}
+
+export interface EditModeProps {
     walletAddresses: string[]
     textareaTypingHandle: Function
 }
@@ -34,5 +41,6 @@ export interface RuffleStatusByAddressProps {
 
 
 export interface PremintUrlFormProps {
-    checkValidUrlForm: Function
+    validateFormField: Function,
+    isValid: boolean
 }
