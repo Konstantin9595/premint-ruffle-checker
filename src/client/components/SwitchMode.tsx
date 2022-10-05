@@ -8,7 +8,7 @@ const ViewModeList = styled.ul`
     border: 1px solid rgba(183, 183, 183, 1);
     padding: 10px;
     text-align: center;
-    height: 350px;
+    height: 320px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -31,20 +31,22 @@ const Textarea = styled.textarea`
     box-shadow: 1px 1px 5px 4px rgb(183 183 183 / 50%);
     border: 1px solid rgba(183, 183, 183, 1);
     padding: 10px;
-    width: 400px;
+    width: 40%;
     margin: 0 auto;
     text-align: center;
-    height: 500px;
+    height: 320px;
     overflow: auto;
     resize: none;
+    margin-block-start: 1em;
     margin-block-end: 1em;
+    padding: 1px 2px;
 `
 const StatusList = styled.ul`
     box-shadow: 1px 1px 5px 4px rgb(183 183 183 / 50%);
     border: 1px solid rgba(183, 183, 183, 1);
     padding: 10px;
     text-align: center;
-    height: 350px;
+    height: 320px;
     overflow: auto;
     display: flex;
     flex-direction: column;

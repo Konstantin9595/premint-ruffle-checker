@@ -3,7 +3,7 @@ import {Error}  from '../types'
 
 const ErrorsBlock = styled.div`
     color: red;
-    width: 400px;
+    max-width: 400px;
     margin: 5px auto;
 `
 
