@@ -96,13 +96,14 @@ var PremintClient = /** @class */ (function () {
     };
     PremintClient.prototype.checkRegister = function (url, requestData) {
         return __awaiter(this, void 0, void 0, function () {
-            var wallet, proxy, _a, status, body, dom, headingList, headingLength, heading, registerStatusData;
+            var wallet, proxy, reqUrl, _a, status, body, dom, headingList, headingLength, heading, registerStatusData;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         wallet = requestData.wallet, proxy = requestData.proxy;
+                        reqUrl = url[url.length - 1] === '/' ? "".concat(url, "verify/?wallet=").concat(wallet) : "".concat(url, "/verify/?wallet=").concat(wallet);
                         return [4 /*yield*/, this.tlsInstance];
-                    case 1: return [4 /*yield*/, (_b.sent()).get("".concat(url, "/verify/?wallet=").concat(wallet), {
+                    case 1: return [4 /*yield*/, (_b.sent()).get(reqUrl, {
                             ja3: '771,4865-4867-4866-49195-49199-52393-52392-49196-49200-49162-49161-49171-49172-51-57-47-53-10,0-23-65281-10-11-35-16-5-51-43-13-45-28-21,29-23-24-25-256-257,0',
                             userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0',
                             headers: {
@@ -134,7 +135,7 @@ var PremintClient = /** @class */ (function () {
                         dom = (0, node_html_parser_1.parse)(body);
                         headingList = dom.querySelectorAll("section .card-body .heading");
                         headingLength = headingList.length;
-                        heading = null;
+                        heading = '';
                         try {
                             heading = headingList[headingLength - 1].innerText;
                         }

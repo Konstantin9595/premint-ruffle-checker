@@ -161,8 +161,8 @@ const PremintCheckerContainer = () => {
 
             for (let wallet of walletAddresses) {
                 
-                const {message, responseStatus} = await checkResultByAddress(formInputUrl, wallet)
-                console.log("message: ", message, "responseStatus: ", responseStatus, "formInputUrl: ", formInputUrl)
+                const {message} = await checkResultByAddress(formInputUrl, wallet)
+                //console.log("message: ", message, "responseStatus: ", responseStatus, "formInputUrl: ", formInputUrl)
                 setResult((prevState) => [...prevState, message])
                 await sleep(2000)
             }
