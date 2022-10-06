@@ -2,7 +2,7 @@
 
 Demo:
 
-![Example](D:\OsPanel\OpenServer\domains\premint-ruffle-checker\premint-checker-example.gif)
+![Example](./premint-checker-example.gif)
 
 
 ### How to setup
