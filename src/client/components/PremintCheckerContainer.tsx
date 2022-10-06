@@ -145,9 +145,14 @@ const PremintCheckerContainer = () => {
             setLoading(true)
             setResult([])
             const {responseStatus} = await checkValidUrl(formInputUrl)
+            if(responseStatus === 400) {
+                setFormError(['address does not exist'])
+                setLoading(false)
+                return
+            }
 
-            if(responseStatus !== 200) {
-                setFormError(['this address does not exist'])
+            if(responseStatus === 404) {
+                setFormError(['an error occurred while check the url. please try later.'])
                 setLoading(false)
                 return
             }
